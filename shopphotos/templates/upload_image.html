@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<center>
+<div class="shadow p-4 mb-5 bg-body rounded" style="top: 25vh;">
+<h2 class="display-4 fw-bolder">Upload Image</h2>
+
+<br/>
+<div class="form-group">       
+  <form method="post" enctype="multipart/form-data" style="width: 25vw;">
+    {% csrf_token %}  
+  <form>
+    <div class="mb-3">
+    <label for="Title" class="form-label">Title</label>
+    <input type="text" class="form-control" name="title" >
+
+    </div>
+
+    <div class="mb-3">
+      <label for="Description">Description</label>
+      <textarea class="form-control" placeholder="Image Description Here ..." name="description" style="height: 100px"></textarea>
+      
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text">$</span>
+      <input type="text" class="form-control" name="price" >
+      <span class="input-group-text"></span>
+    </div>
+
+    <div class="input-group mb-3">
+      <input type="file" class="form-control" name="image">
+    </div>
+
+  </div> 
+<br>
+<br>
+<br>
+<br>
+
+    <input type="submit" value="Submit" class="btn btn-secondary">
+
+    
+  </form>
+</div>
+</center>
+
+
+  
+{% endblock %}

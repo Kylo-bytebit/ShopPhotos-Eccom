@@ -1,0 +1,41 @@
+{%extends 'base.html' %}
+
+{% block content %}
+    
+    <center>
+    {% if searched %}
+
+        <h1>You Searched For {{searched}}</h1>
+        <br/>
+
+        <div class="row">
+        {% for photos in photos %}
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{photos.image}}" alt="{{ photos.name }}">
+                <div class="card-body">
+                  <h5 class="card-title">{{photos.name}}</h5>
+                  <p class="card-text">${{photos.price}}</p>
+                  {% if user.is_authenticated %}
+
+                  <a href="{% url 'purchase' photos.name %}" class="btn btn-primary">Buy Now</a>
+    
+                  {% else %}
+    
+                 <p>Login /Register to make purchase</p>
+                 
+                {% endif %}
+                </div>
+              </div>
+        </div>
+        
+        <br/>
+        {% endfor %}
+        </div>
+    {% else %}
+            <h1> No Entry Please Try Agian</h1>
+    {% endif %}
+    </center>
+
+        
+    {% endblock %}

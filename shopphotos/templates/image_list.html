@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container px-4 px-lg-5 my-5">
+  <h2>Available Images</h2>
+
+  <div class="row" style="gap: 20px;">
+    {% for image in images %}
+    
+    <div class="col">
+
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{{ image.image.url}}" alt="{{ image.title }}">
+            <div class="card-body">
+              <h5 class="card-title">{{image.title}}</h5>
+              <p>{{ image.description }}</p>
+              <p class="card-text">${{image.price}}</p>
+              <p>Uploaded by: {{ image.user.username }}</p>
+             <!--- <a href="{% url 'edit_image' image.id %}">Edit</a>-->
+              <a href="{% url 'purchase_u' image %}" class="btn btn-primary">Buy Now</a>
+
+              {% if image.user == request.user %}
+              <a href="{% url 'edit_image' image.id %}" class="btn btn-primary">Edit</a>
+              <a href="{% url 'delete_image' image.id %}" class="btn btn-primary">Delete</a>
+              {% endif %}
+            </div>
+          </div>
+    </div>  
+            
+            {% endfor %}
+</div>
+{% endblock %}
+
+
+
